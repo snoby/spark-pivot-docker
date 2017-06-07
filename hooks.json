@@ -1,14 +1,30 @@
 [
   {
     "id": "alertmanager",
-    "execute-command": /usr/local/bin/spark-pivot,
+    "execute-command": "/usr/local/bin/spark-pivot",
     "command-working-directory": "/etc/webhook/",
     "pass-arguments-to-command":
     [
       {
         "source": "entire-payload"
+      },
+      {
+        "source": "payload",
+        "name": "receiver"
       }
-    ]
+    ],
+    "trigger-rule":
+    {
+      "match":
+      {
+        "type": "value",
+        "value": "firing",
+        {
+          "source": "payload",
+          "name": "status"
+        }
+      }
+    }
 
   }
 

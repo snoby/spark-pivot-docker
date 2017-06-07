@@ -1,3 +1,6 @@
 #!/bin/bash
 VERSION=v1
-docker build -t spark-pivot:${VERSION} .
+#
+#Because we are pulling from source repositories we don't want to use any cache
+#
+docker build --no-cache=true -t spark-pivot:${VERSION} .
